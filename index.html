@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Modal Test</title>
+    <style>
+      body {
+        height: 5000px;
+      }
+      /* Hide modal by default */
+      .modal {
+        /* display: none; */
+        visibility: hidden;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* semi-transparent overlay */
+      }
+
+      .modal.show {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .modal-content {
+        background-color: white;
+        margin: 10% auto;
+        padding: 20px;
+        border-radius: 8px;
+        width: 80%;
+        max-width: 500px;
+        position: relative;
+      }
+
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 24px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Trigger Button -->
+    <button id="openModalBtn">Open Modal</button>
+
+    <!-- Modal Overlay -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Modal Title</h2>
+        <p>This is a vanilla JS modal!</p>
+      </div>
+    </div>
+    <script>
+      const modal = document.getElementById("modal");
+      const closeBtn = document.querySelector(".close");
+      const openBtn = document.getElementById("openModalBtn");
+
+      function preventDefault(e) {
+        e.preventDefault();
+      }
+
+      function openModal() {
+        document.body.style.overflow = "hidden";
+        document.body.style.position = "fixed"; // locks scroll position
+        document.addEventListener("touchmove", preventDefault, {
+          passive: false,
+        });
+        modal.classList.add("show");
+      }
+
+      function closeModal() {
+        document.body.style.overflow = "";
+        document.body.style.position = "";
+        document.removeEventListener("touchmove", preventDefault);
+        modal.classList.remove("show");
+      }
+
+      openBtn.addEventListener("click", openModal);
+      closeBtn.addEventListener("click", closeModal);
+      window.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
+    </script>
+  </body>
+</html>
