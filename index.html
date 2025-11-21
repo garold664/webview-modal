@@ -13,6 +13,14 @@
         height: 5000px;
       }
       /* Hide modal by default */
+
+      .login-page {
+        min-height: 100dvh;
+        padding-top: 1.2rem;
+        background: var(--colors__bg_lightgray_primary_default) url(../img/bg.jpg)
+          repeat-y top center / 100%;
+      }
+      
       .modal {
         /* display: none; */
         visibility: hidden;
@@ -51,17 +59,19 @@
     </style>
   </head>
   <body>
-    <!-- Trigger Button -->
-    <button id="openModalBtn">Open Modal</button>
-
-    <!-- Modal Overlay -->
-    <div id="modal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Modal Title</h2>
-        <p>This is a vanilla JS modal!</p>
+    <div class="login-page">
+      <!-- Trigger Button -->
+      <button id="openModalBtn">Open Modal</button>
+  
+      <!-- Modal Overlay -->
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Modal Title</h2>
+          <p>This is a vanilla JS modal!</p>
+        </div>
       </div>
-    </div>
+    </div>  
     <script>
       const modal = document.getElementById("modal");
       const closeBtn = document.querySelector(".close");
